@@ -1,0 +1,14 @@
+#script to set wallpaper(in darwin) in 1 command
+#exec - setwall <IMAGE_DATA_URL>
+ 
+setwall() {
+    cd Desktop/script-downloads/
+    FILEN=$RANDOM
+    mv current.png $FILEN.png
+    curl "$1" --output current.png
+    osascript -e 'tell application "Finder" to set desktop picture to POSIX file "/Users/surge/Desktop/script-downloads/current.png"'
+    echo "tried setting wallpaper"
+    killall Dock
+    cd
+}
+
